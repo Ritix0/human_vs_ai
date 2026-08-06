@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script>
+    // БЕЗОПАСНОСТЬ: Умный роутер с проверкой сохраненной сессии
+    // Проверяем, есть ли в памяти браузера сохраненный авторизационный токен игрока
+    const hasSavedSession = localStorage.getItem('saved_auth_token') !== null;
+
+    // Если нет параметров Телеграм, нет принудительного режима ПК (?pc=true) И нет сохраненной сессии —
+    // только тогда перенаправляем на промо-лендинг для модерации Яндекса.
+    if (!window.location.search.includes('tgWebAppData') && 
+        !window.location.hash.includes('tgWebAppData') && 
+        !window.location.search.includes('pc=true') && 
+        !hasSavedSession) {
+      window.location.href = 'landing.html';
+    }
+  </script>
+
+  <!-- Самый первый скрипт Telegram (Загружается синхронно для мгновенной инициализации в main.dart) -->
+   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <!-- Внутри <head> в web/index.html -->
+  <script>window.yaContextCb=window.yaContextCb||[]</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
+  <script>
+    window.showTelegramAd = function(blockId) {
+      return new Promise((resolve, reject) => {
+        // Умный предохранитель: если за 4 секунды реклама не начала загружаться (например, заблокирована Адблоком) — отменяем ожидание
+        const timeout = setTimeout(() => {
+          console.warn('[YAN] Загрузка рекламы превысила лимит времени. Возможно, активен AdBlock.');
+          reject("adblock"); // Передаем метку блокировщика во Flutter
+        }, 4000);
+
+        let adContainer = document.getElementById('yandex_rewarded_container');
+        if (!adContainer) {
+          adContainer = document.createElement('div');
+          adContainer.id = 'yandex_rewarded_container';
+          document.body.appendChild(adContainer);
+        }
+
+        window.yaContextCb.push(() => {
+          Ya.Context.AdvManager.render({
+            blockId: blockId,
+            type: 'rewarded', // КРИТИЧЕСКИЙ ПАРАМЕТР: указываем Яндексу, что это видео с наградой
+            platform: blockId.endsWith('-1') ? 'touch' : 'desktop', // Автоматически ставим touch для мобилок (-1) и desktop для ПК (-2)
+            async: true,
+            onRender: (info) => {
+              clearTimeout(timeout); // Реклама успешно началась, отменяем экстренный таймаут!
+              console.log('[YAN] Реклама успешно запущена.');
+            },
+            onRewarded: () => {
+              resolve(true); // Ролик досмотрен
+            },
+            onError: (err) => {
+              clearTimeout(timeout); // Ошибка получена, отменяем таймаут
+              console.error('[YAN-ERROR] Детали ошибки Яндекса:', err); // КРИТИЧЕСКОЕ ДОБАВЛЕНИЕ: выведет точную причину в консоль
+              reject(err.type || 'error');
+            }
+          });
+        });
+      });
+    };
+  </script>
+
+  <!-- НАМЕРТВО ОТМЕНЯЕМ ВСЕ СТАНДАРТНЫЕ ТАЧ-СОБЫТИЯ ПЕРЕМЕЩЕНИЯ ДЛЯ БРАУЗЕРА -->
+  <!-- Это полностью исключает закрытие шторки Telegram при свайпах вниз в любой части экрана -->
+  <script>
+    document.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+    }, { passive: false });
+  </script>
+
+  <base href="/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="human_vs_ai">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- КРИТИЧЕСКИЙ КРОСС-ПЛАТФОРМЕННЫЙ CSS ДЛЯ БЛОКИРОВКИ СВАЙПОВ ТЕЛЕГРАМ -->
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: fixed; /* Фиксирует холст на месте */
+      touch-action: none; /* НАМЕРТВО БЛОКИРУЕТ все нативные жесты браузера (шторку ТГ) */
+      overscroll-behavior: none; /* Намертво отключает системный отскок и сворачивание в Telegram */
+    }
+  </style>
+
+  <title>human_vs_ai</title>
+  <link rel="icon" type="image/png" href="favicon.png?v=1.1"/>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

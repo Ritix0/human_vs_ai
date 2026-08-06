@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Переспорь ИИ — Интеллектуальные дуэли в Telegram</title>
+  <!-- Иконка для вкладки браузера (Favicon) -->
+  <link rel="icon" type="image/png" href="favicon.png?v=1.1">
+  <!-- Иконка при сохранении сайта на экран смартфона (Apple Touch Icon) -->
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <style>
+    body {
+      background-color: #030712; /* Фирменный темный AppColors.background */
+      color: #F8FAFC;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 800px;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    h1 {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin: 10px 0;
+      background: linear-gradient(to right, #38BDF8, #10B981); /* Ледяной неон */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      color: #94A3B8;
+      font-size: 18px;
+    }
+    .play-btn {
+      display: inline-flex;
+      align-items: center;
+      background-color: #38BDF8; /* AppColors.primaryAccent */
+      color: #030712;
+      padding: 16px 32px;
+      border-radius: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 18px;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+      margin: 30px 0;
+      transition: transform 0.2s;
+    }
+    .play-btn:hover {
+      transform: scale(1.03);
+    }
+    .article-card {
+      background-color: #0F172A; /* AppColors.cardBackground */
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 24px;
+      padding: 30px;
+      margin-bottom: 24px;
+    }
+    h2 {
+      color: #38BDF8;
+      margin-top: 0;
+    }
+    p {
+      color: #94A3B8;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    footer {
+      margin-top: auto;
+      padding: 40px 20px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      width: 100%;
+      text-align: center;
+      max-width: 800px;
+      box-sizing: border-box;
+    }
+    footer a {
+      color: #94A3B8;
+      text-decoration: underline;
+      margin: 0 15px;
+      font-size: 13px;
+    }
+    .copyright {
+      color: #475569;
+      font-size: 11px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div style="font-size: 50px;">🤖</div>
+      <h1>ПЕРЕСПОРЬ ИИ</h1>
+      <p class="subtitle">Высокооктановая интеллектуальная дуэль прямо в Telegram</p>
+      
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 30px 0;">
+        <!-- Кнопка 1: Запуск на телефонах через Телеграм бота -->
+        <a href="https://t.me/people_vs_ai_bot/Debate" class="play-btn" style="margin: 0;">Играть на телефоне</a>
+        
+        <!-- Кнопка 2: Запуск веб-версии на ПК с входом по QR-коду -->
+        <a href="./?pc=true" class="play-btn" style="margin: 0; background-color: transparent; border: 2px solid #38BDF8; color: #38BDF8; box-shadow: none;">Играть на ПК (Вход по QR)</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="article-card">
+        <h2>🧠 Как переспорить искусственный интеллект? Гайд по тактике дебатов</h2>
+        <p>Для победы над харизматичным алгоритмом игроку необходимо строить сильные, фактологические контраргументы. Старайтесь бить в слабые места позиции ИИ. Если вы будете просто поддакивать или соглашаться с его мнением, система расценит это как трусость и логическую капитуляцию, наказав вас минимальными баллами.</p>
+      </div>
+
+      <div class="article-card">
+        <h2>🛡️ Зачем нужна страховка XP и как работают уровни?</h2>
+        <p>Игровые сессии проходят в высоком темпе. За провальные ответы или преждевременный побег из дебатов СУБД накладывает штраф в размере 100 XP. Чтобы обезопасить свой уровень, приобретайте в магазине Страховку XP. Она лежит на вашем балансе без ограничения по времени и автоматически сгорает при неудаче, полностью защищая ваш прогресс.</p>
+      </div>
+
+      <div class="article-card">
+        <h2>📦 Персонализация: Пакеты характеров ИИ</h2>
+        <p>Сделайте споры еще ярче! В магазине доступны тематические пакеты характеров: «Милый пак» превратит оппонента в заботливую бабушку или кошкодевочку, а «Пак 90-х» заставит ИИ общаться по строгим понятиям. Переключайте активные паки прямо в лобби, и характеры у тем будут случайно тасоваться при каждом обновлении!</p>
+      </div>
+
+      <!-- ОБЯЗАТЕЛЬНЫЙ БЛОК ДЛЯ МОДЕРАЦИИ ЮKASSA: ФИКСИРОВАННЫЙ ПРАЙС-ЛИСТ -->
+      <div class="article-card">
+        <h2>🛒 Внутриигровой магазин и фиксированные цены</h2>
+        <p>Для продолжения интеллектуальных дуэлей и кастомизации игрового процесса вы можете приобрести дополнительные услуги и лимиты энергии в нашем магазине по следующим фиксированным ценам:</p>
+        <ul style="color: #94A3B8; font-size: 15px; line-height: 1.8; padding-left: 20px; margin-top: 15px;">
+          <li><strong>Пакет «3 энергии ИИ»:</strong> фиксированная цена <strong>9 ₽</strong> (или 8 ⭐️)</li>
+          <li><strong>Пакет «10 энергии ИИ»:</strong> фиксированная цена <strong>27 ₽</strong> (или 22 ⭐️)</li>
+          <li><strong>Страховка XP (1 шт.):</strong> фиксированная цена <strong>19 ₽</strong> (или 16 ⭐️)</li>
+          <li><strong>Милый пак персонажей ИИ (разблокировка):</strong> фиксированная цена <strong>49 ₽</strong> (или 40 ⭐️)</li>
+          <li><strong>Пак персонажей ИИ «90-е» (разблокировка):</strong> фиксированная цена <strong>49 ₽</strong> (или 40 ⭐️)</li>
+          <li><strong>VIP Безлимит на месяц (30 дней подписки):</strong> фиксированная цена <strong>599 ₽</strong> (или 500 ⭐️)</li>
+        </ul>
+      </div>
+    </main>
+
+    <footer>
+      <!-- Ссылки на юридические документы -->
+      <a href="privacy.html" target="_blank">Политика конфиденциальности</a>
+      <a href="terms.html" target="_blank">Пользовательское соглашение</a>
+      <a href="#" onclick="alert('Email техподдержки: support@peoplevsai.online')">Контакты</a>
+      
+      <!-- ОБЯЗАТЕЛЬНО ДЛЯ ЮKASSA: Доставка цифрового товара и реквизиты -->
+      <div style="margin-top: 24px; color: #475569; font-size: 12px; line-height: 1.5; text-align: center;">
+        <p style="margin: 5px 0;"><strong>Условия получения товара:</strong> Доставка цифровых товаров (энергии ИИ, VIP-подписок, страховки XP) осуществляется моментально в автоматическом режиме сразу после успешного подтверждения оплаты платежным шлюзом путем зачисления на ваш игровой профиль в Telegram Mini App.</p>
+        <p style="margin: 5px 0; color: #94A3B8;"><strong>Реквизиты продавца:</strong> Самозанятый гражданин Осколков Иван Михайлович, ИНН: 430503657770</p>
+      </div>
+
+      <div class="copyright" style="margin-top: 20px;">© 2026 «Переспорь ИИ». Все права защищены.</div>
+    </footer>
+  </div>
+</body>
+</html>
